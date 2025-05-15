@@ -1,3 +1,4 @@
+// LED流水灯
 const uint8_t LED_BASE_PIN = 2;
 const uint8_t LED_NUM = 6;
 

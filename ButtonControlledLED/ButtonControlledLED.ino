@@ -1,3 +1,4 @@
+// 按键控制LED灯
 const uint8_t LED_PIN = 10;
 const uint8_t BTN_PIN = 7;
 

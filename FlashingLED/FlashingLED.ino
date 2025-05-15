@@ -1,3 +1,4 @@
+// led灯闪烁-数字量输出
 const uint8_t LED_PIN = 2;
 
 void setup() {

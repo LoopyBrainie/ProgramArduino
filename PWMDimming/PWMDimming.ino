@@ -1,3 +1,4 @@
+// PWM调光
 const uint8_t POT_PIN = A0;
 const uint8_t LED_PIN = 11;
 
