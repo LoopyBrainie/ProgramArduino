@@ -18,6 +18,29 @@ void setup() {
         sensorPins[i] = i + 2;
     } //自动化赋值传感器
 
+    for(uint8_t i = 0; i < sensorCount; i++) {
+        pinMode(sensorPins[i], INPUT); // 设置传感器引脚为输入模式
+    }
+    pinMode(ledPin, OUTPUT); // 设置LED引脚为输出模式
+    Serial.begin(9600); // 初始化串口通信
+}
+
+void loop() {
+    for(uint8_t i = 0; i < sensorCount; i++) {
+        sensorState[i] = detectSensor(sensorPins[i]); // 检测传感器状态
+        Serial.print("Sensor ");
+        Serial.print(i);
+        Serial.print(": ");
+        Serial.println(sensorState[i]);
+    }
+
+    // 控制LED灯
+    if (sensorState[0] == 1 || sensorState[1] == 1 || sensorState[2] == 1) {
+        digitalWrite(ledPin, HIGH); // 打开LED灯
+    } else {
+        digitalWrite(ledPin, LOW); // 关闭LED灯
+    }
+    delay(500);
 }
 
 
