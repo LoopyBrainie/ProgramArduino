@@ -151,6 +151,38 @@ void TaskSeg() {
 
 
 /* 初始化 */
+void setup() {
+    // 初始化引脚
+    pinMode(RED_PIN, OUTPUT);
+    pinMode(GREEN_PIN, OUTPUT);
+    pinMode(YELLOW_PIN, OUTPUT);
+    pinMode(BEEP_PIN, OUTPUT);
+    pinMode(BTN_PIN, INPUT_PULLUP); // 按键引脚使用上拉电阻
+    pinMode(PHOTORES_PIN, INPUT);   // 光敏电阻引脚
+    pinMode(MIC_PIN, INPUT);        // 麦克风引脚
+
+    // 初始化数码管
+    seg7_init(SEG_PINS);
+
+    // 初始化交通灯状态
+    digitalWrite(RED_PIN, HIGH);
+    digitalWrite(GREEN_PIN, LOW);
+    digitalWrite(YELLOW_PIN, LOW);
+
+    // 初始化蜂鸣器
+    digitalWrite(BEEP_PIN, LOW);
+}
 
 
 /* 主循环 */
+void loop() {
+    Tick = millis(); // 获取当前tick时刻（毫秒）
+
+    TaskLight(); // 执行交通灯任务
+    TaskSeg();   // 执行数码管任务
+
+    TaskBeep();
+    TaskBTN();
+    TaskDayNight();
+    TaskAccidentCheck();
+}
